@@ -57,6 +57,9 @@ class CelestialBodies
     #[ORM\OneToMany(targetEntity: Favorites::class, mappedBy: 'celestialBodies')]
     private Collection $favorite;
 
+    #[ORM\ManyToOne(inversedBy: 'celestial')]
+    private ?User $addedBy = null;
+
     public function __construct()
     {
         $this->relatedRessources = new ArrayCollection();
@@ -244,6 +247,18 @@ class CelestialBodies
                 $favorite->setCelestialBodies(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getAddedBy(): ?User
+    {
+        return $this->addedBy;
+    }
+
+    public function setAddedBy(?User $addedBy): static
+    {
+        $this->addedBy = $addedBy;
 
         return $this;
     }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -36,6 +38,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column]
     private ?\DateTimeImmutable $createdAt = null;
+
+    /**
+     * @var Collection<int, CelestialBodies>
+     */
+    #[ORM\OneToMany(targetEntity: CelestialBodies::class, mappedBy: 'addedBy')]
+    private Collection $celestial;
+
+    /**
+     * @var Collection<int, UserSearchHistory>
+     */
+    #[ORM\OneToMany(targetEntity: UserSearchHistory::class, mappedBy: 'user')]
+    private Collection $search_history;
+
+    /**
+     * @var Collection<int, Favorites>
+     */
+    #[ORM\OneToMany(targetEntity: Favorites::class, mappedBy: 'user')]
+    private Collection $favorites;
+
+    public function __construct()
+    {
+        $this->celestial = new ArrayCollection();
+        $this->search_history = new ArrayCollection();
+        $this->favorites = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -132,6 +159,96 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setCreatedAt(\DateTimeImmutable $createdAt): static
     {
         $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, CelestialBodies>
+     */
+    public function getCelestial(): Collection
+    {
+        return $this->celestial;
+    }
+
+    public function addCelestial(CelestialBodies $celestial): static
+    {
+        if (!$this->celestial->contains($celestial)) {
+            $this->celestial->add($celestial);
+            $celestial->setAddedBy($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCelestial(CelestialBodies $celestial): static
+    {
+        if ($this->celestial->removeElement($celestial)) {
+            // set the owning side to null (unless already changed)
+            if ($celestial->getAddedBy() === $this) {
+                $celestial->setAddedBy(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, UserSearchHistory>
+     */
+    public function getSearchHistory(): Collection
+    {
+        return $this->search_history;
+    }
+
+    public function addSearchHistory(UserSearchHistory $searchHistory): static
+    {
+        if (!$this->search_history->contains($searchHistory)) {
+            $this->search_history->add($searchHistory);
+            $searchHistory->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSearchHistory(UserSearchHistory $searchHistory): static
+    {
+        if ($this->search_history->removeElement($searchHistory)) {
+            // set the owning side to null (unless already changed)
+            if ($searchHistory->getUser() === $this) {
+                $searchHistory->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Favorites>
+     */
+    public function getFavorites(): Collection
+    {
+        return $this->favorites;
+    }
+
+    public function addFavorite(Favorites $favorite): static
+    {
+        if (!$this->favorites->contains($favorite)) {
+            $this->favorites->add($favorite);
+            $favorite->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFavorite(Favorites $favorite): static
+    {
+        if ($this->favorites->removeElement($favorite)) {
+            // set the owning side to null (unless already changed)
+            if ($favorite->getUser() === $this) {
+                $favorite->setUser(null);
+            }
+        }
 
         return $this;
     }
