@@ -66,6 +66,7 @@ body {
   font-family: var(--default-font);
 }
 
+
 a {
   color: var(--accent-color);
   text-decoration: none;
@@ -143,11 +144,12 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  padding: 20px 0;
+  color: #05243e;
+  position: fixed;
+  padding: 10px 0;
   transition: all 0.5s;
-  z-index: 997;
+  z-index: 1000;
+  opacity:1;
 }
 
 .header .logo {
@@ -177,7 +179,7 @@ h6 {
 .header .btn-getstarted:focus {
   color: var(--contrast-color);
   background: var(--accent-color);
-  font-size: 14px;
+  font-size: 18px;
   padding: 8px 26px;
   margin: 0;
   border-radius: 4px;
@@ -188,6 +190,16 @@ h6 {
 .header .btn-getstarted:focus:hover {
   color: var(--contrast-color);
   background: color-mix(in srgb, var(--accent-color), transparent 15%);
+}
+
+.img-fluid{
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+  height: 500px;
+  display: block;
+  object-fit: cover;
+  top:0;
 }
 
 @media (max-width: 1200px) {
@@ -208,6 +220,11 @@ h6 {
 
 .scrolled .header {
   box-shadow: 0 0 30px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container_image{
+  margin-top:500px;
+  opacity: 1;
 }
 
 /* Index Page Header
@@ -251,9 +268,9 @@ h6 {
 
   .navmenu a,
   .navmenu a:focus {
-    color: var(--nav-color);
+    color: #f9f9f9;
     padding: 18px 15px;
-    font-size: 16px;
+    font-size: 20px;
     font-family: var(--nav-font);
     font-weight: 400;
     display: flex;
@@ -469,11 +486,13 @@ h6 {
 # Global Footer
 --------------------------------------------------------------*/
 .footer {
-  color: var(--default-color);
-  background-color: var(--background-color);
-  font-size: 14px;
-  padding-bottom: 50px;
-  position: relative;
+    color: var(--default-color);
+    background-color: var(--background-color);
+    font-size: 14px;
+    padding-bottom: 50px;
+    z-index: 1;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer .footer-top {

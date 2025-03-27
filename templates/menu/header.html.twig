@@ -9,10 +9,10 @@
       <nav id="navmenu" class="navmenu">
         <ul>
           <li><a href="{{path("app_home")}}" class="active">Accueil</a></li>
-          <li><a href="{{path("app_home")}}" class="">A propos</a></li>
-          <li><a href="{{path("app_home")}}" class="">Contribuer</a></li>
+          <li><a href="{{path("app_home")}}">A propos</a></li>
+          <li><a href="{{path("app_home")}}">Contribuer</a></li>
           <li><a href="{{path("app_home")}}">Liens externes</a></li>
-          <li><a href="{{path("app_home")}}" class="">Contact</a></li>
+          <li><a href="{{path("app_home")}}">Contact</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
@@ -22,5 +22,6 @@
       {% else %}
         <a class="btn-getstarted" href="{{ path('app_login') }}">Se connecter</a>
       {% endif %}
+
     </div>
   </header>
