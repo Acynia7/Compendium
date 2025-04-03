@@ -36,8 +36,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 255)]
     private ?string $username = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     /**
      * @var Collection<int, CelestialBodies>
@@ -62,6 +62,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->celestial = new ArrayCollection();
         $this->search_history = new ArrayCollection();
         $this->favorites = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable("now");
     }
 
     public function getId(): ?int

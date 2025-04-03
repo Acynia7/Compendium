@@ -19,7 +19,7 @@ class CelestialBodies
     private ?string $name = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $mass = null;
+    private ?string $mass = null;
 
     #[ORM\Column(nullable: true)]
     private ?float $radius = null;
@@ -36,8 +36,8 @@ class CelestialBodies
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $image_url = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
@@ -64,6 +64,7 @@ class CelestialBodies
     {
         $this->relatedRessources = new ArrayCollection();
         $this->favorite = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable("now");
     }
 
     public function getId(): ?int
@@ -83,12 +84,12 @@ class CelestialBodies
         return $this;
     }
 
-    public function getMass(): ?float
+    public function getMass(): ?string
     {
         return $this->mass;
     }
 
-    public function setMass(?float $mass): static
+    public function setMass(?string $mass): static
     {
         $this->mass = $mass;
 

@@ -16,6 +16,24 @@ class CelestialBodiesRepository extends ServiceEntityRepository
         parent::__construct($registry, CelestialBodies::class);
     }
 
+    public function add(CelestialBodies $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(CelestialBodies $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+    
 //    /**
 //     * @return CelestialBodies[] Returns an array of CelestialBodies objects
 //     */
