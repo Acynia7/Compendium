@@ -31,4 +31,4 @@
 
 /frankenphp/Caddyfile
 
-public\uploads\photos
+/public/uploads/photos/
