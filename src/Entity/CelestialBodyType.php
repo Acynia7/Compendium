@@ -42,11 +42,16 @@ class CelestialBodyType
         return $this->name;
     }
 
-    public function setName(string $name): static
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name ?? '';
     }
 
     public function getCreatedAt(): ?\DateTimeImmutable

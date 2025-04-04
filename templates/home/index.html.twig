@@ -14,7 +14,7 @@
     <p>Voici les dernières contributions des utilisateurs :</p>
     <div class="row">
         {% for celestialBody in celestialBodies %}
-            <div class="col-md-4 mb-4">
+            <div class="col-md-2 mb-4">
                 <div class="card">
                     {% if celestialBody.imageUrl %}
                         <img src="{{ asset('uploads/photos/' ~ celestialBody.imageUrl) }}" class="card-img-top" alt="{{ celestialBody.name }}">
@@ -22,9 +22,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ celestialBody.name }}</h5>
                         <p class="card-text">
-                            Description: {{ celestialBody.description }}<br>
-                            Distance de la Terre : {{ celestialBody.distanceFromEarth }} km<br>
-                            Température : {{ celestialBody.temperature }} K<br>
+                            Type : {{ celestialBody.type }}<br>
                         </p>
                     </div>
                 </div>
