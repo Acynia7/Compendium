@@ -22,13 +22,13 @@ class CelestialBodies
     private ?string $mass = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $radius = null;
+    private ?string $radius = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $distance_from_earth = null;
+    private ?string $distance_from_earth = null;
 
     #[ORM\Column(nullable: true)]
-    private ?float $temperature = null;
+    private ?string $temperature = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
@@ -67,6 +67,12 @@ class CelestialBodies
         $this->createdAt = new \DateTimeImmutable("now");
     }
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -96,36 +102,36 @@ class CelestialBodies
         return $this;
     }
 
-    public function getRadius(): ?float
+    public function getRadius(): ?string
     {
         return $this->radius;
     }
 
-    public function setRadius(?float $radius): static
+    public function setRadius(?string $radius): static
     {
         $this->radius = $radius;
 
         return $this;
     }
 
-    public function getDistanceFromEarth(): ?float
+    public function getDistanceFromEarth(): ?string
     {
         return $this->distance_from_earth;
     }
 
-    public function setDistanceFromEarth(?float $distance_from_earth): static
+    public function setDistanceFromEarth(?string $distance_from_earth): static
     {
         $this->distance_from_earth = $distance_from_earth;
 
         return $this;
     }
 
-    public function getTemperature(): ?float
+    public function getTemperature(): ?string
     {
         return $this->temperature;
     }
 
-    public function setTemperature(?float $temperature): static
+    public function setTemperature(?string $temperature): static
     {
         $this->temperature = $temperature;
 
@@ -149,7 +155,7 @@ class CelestialBodies
         return $this->image_url;
     }
 
-    public function setImageUrl(?string $image_url): static
+    public function setImageUrl(?string $image_url): self
     {
         $this->image_url = $image_url;
 

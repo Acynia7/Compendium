@@ -30,3 +30,5 @@
 ###< lexik/jwt-authentication-bundle ###
 
 /frankenphp/Caddyfile
+
+public\uploads\photos

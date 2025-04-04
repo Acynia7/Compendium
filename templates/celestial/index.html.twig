@@ -16,4 +16,10 @@
     {{ form(celestial_form) }}
 {% endif %}
 
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success">
+        <strong>Succès!</strong> {{ message }}
+    </div>
+{% endfor %}
+
 {% endblock %}

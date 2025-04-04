@@ -8,10 +8,11 @@ use App\Entity\User;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints\Image;
 
 class CelestialFormType extends AbstractType
 {
@@ -24,28 +25,30 @@ class CelestialFormType extends AbstractType
             ->add('mass', TextType::class, [
                 'label' => 'Masse (kg)'
             ])
-            ->add('radius', NumberType::class, [
+            ->add('radius', TextType::class, [
                 'label' => 'Diamètre (km)'
             ])
-            ->add('distance_from_earth', NumberType::class, [
+            ->add('distance_from_earth', TextType::class, [
                 'label' => 'Distance de la Terre (km)'
             ])
-            ->add('temperature', NumberType::class, [
+            ->add('temperature', TextType::class, [
                 'label' => 'Température (K)'
             ])
             ->add('description', TextType::class, [
                 'label' => 'Description'
             ])
-            #->add('image_url', 'label' => 'URL de l\'image')
+            ->add('image_url', FileType::class, [
+                'label' => 'Image',
+                'required' => false,
+                'mapped' => false,
+                'constraints' => [
+                    new Image(['maxSize' => '1024k'])
+                ]
+            ])
             ->add('type', EntityType::class, [
                 'class' => CelestialBodyType::class,
                 'choice_label' => 'name',
             ])
-            ->add('addedBy', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
-            ])
-
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
