@@ -64,8 +64,8 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  margin: 0; /* Assurez-vous qu'il n'y a pas de marge par défaut */
 }
-
 
 a {
   color: var(--accent-color);
