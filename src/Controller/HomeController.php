@@ -22,18 +22,13 @@ final class HomeController extends AbstractController
         ]);
     }
 
-    #[Route('/show/{celestialBody<\d+>}', name: 'app_show')]
-    public function show(#[MapEntity(expr: 'repository.find(celestialBodies)')] CelestialBodies $celestialBodies, CelestialBodiesRepository $celestialBodiesRepository, CelestialBodyTypeRepository $celestialBodyTypeRepository): Response
-    {
-        if (!$celestialBodies) {
-            return $this->render('error/404.html.twig');
-        }
-
-        $celestialBodyType = $celestialBodies->getType();
-
+    #[Route('/show/{celestialBodies<\d+>}', name: 'app_show')]
+    public function show(
+        #[MapEntity(mapping: ['celestialBodies' => 'id'])] CelestialBodies $celestialBodies
+    ): Response {
         return $this->render('celestial/show.html.twig', [
             'celestialBodies' => $celestialBodies,
-            'celestialBodyType' => $celestialBodyType,
+            'celestialBodyType' => $celestialBodies->getType(),
         ]);
     }
 }

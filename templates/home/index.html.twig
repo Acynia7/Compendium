@@ -14,7 +14,7 @@
         <div class="col-md-10">
             <!-- Section Compendium -->
             <div class="bg-light p-3 border rounded mb-4">
-                <h3>Compendium</h3>
+                <img src="{{ asset('Append-New-1.0.0/assets/img/logo_crop.png') }}" class="cropped_logo" alt="Compendium">
                 <p>Use the search bar to find specific celestial bodies or browse through the list below.</p>
                 <p>Click on a celestial body to view more details.</p>
                 <p>Use the filter options to narrow down your search based on type or other criteria.</p>
@@ -29,7 +29,7 @@
                                 <img src="{{ asset('uploads/photos/' ~ celestialBody.imageUrl) }}" class="card-img-top" alt="{{ celestialBody.name }}">
                             {% endif %}
                             <div class="card-body">
-                                <a href="{{ path('app_show', {'celestialBody': celestialBody.id}) }}" class="card-title"> 
+                                <a href="{{ path('app_show', {'celestialBodies': celestialBody.id}) }}" class="card-title"> 
                                     <h5>{{ celestialBody.name }}</h5> 
                                 </a>
                                 <p class="card-text">
