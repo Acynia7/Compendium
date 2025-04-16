@@ -33,6 +33,28 @@ class CelestialBodiesRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    public function findCelestialBodiesByName(string $query)
+    {
+
+        $qb = $this->createQueryBuilder('cb');
+        $qb
+            ->where(
+                $qb->expr()->andX(
+                    $qb->expr()->orX(
+                        $qb->expr()->like('cb.name', ':query'),
+                    ),
+
+                    $qb->expr()->isNotNull('cb.createdAt')
+                )
+            )
+            ->setParameter('query', '%' . $query . '%')
+        ;
+
+        return $qb
+            ->getQuery()
+            ->getResult();
+    }
     
 //    /**
 //     * @return CelestialBodies[] Returns an array of CelestialBodies objects
@@ -49,13 +71,4 @@ class CelestialBodiesRepository extends ServiceEntityRepository
 //        ;
 //    }
 
-//    public function findOneBySomeField($value): ?CelestialBodies
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }

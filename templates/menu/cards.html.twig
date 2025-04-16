@@ -1,0 +1,27 @@
+<div class="d-flex align-items-center justify-content-between bg-white p-3 border rounded mb-4">
+    <img src="{{ asset('Append-New-1.0.0/assets/img/logo_crop.png') }}" class="cropped_logo" alt="Compendium">
+    <div class="search-bar">
+        {{ render(controller('App\\Controller\\SearchController::searchBar')) }}
+    </div>
+</div>
+
+<!-- Section des cartes -->
+<div class="row">
+    {% for celestialBody in celestialBodies %}
+        <div class="col-md-2 mb-4">
+            <div class="card">
+                {% if celestialBody.imageUrl %}
+                    <img src="{{ asset('uploads/photos/' ~ celestialBody.imageUrl) }}" class="card-img-top" alt="{{ celestialBody.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <a href="{{ path('app_show', {'celestialBodies': celestialBody.id}) }}" class="card-title"> 
+                        <h5>{{ celestialBody.name }}</h5> 
+                    </a>
+                    <p class="card-text">
+                        Type : {{ celestialBody.type }}<br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+</div>

@@ -1,0 +1,7 @@
+<h3><b>Catégories</b></h3>
+<br/>
+{% for celestialBodyType in celestialBodyTypes %}
+    <a href="{{ path('app_show_type', {'celestialBodyType': celestialBodyType.id}) }}">
+        <p> {{ celestialBodyType.name }} </p>
+    </a>
+{% endfor %}

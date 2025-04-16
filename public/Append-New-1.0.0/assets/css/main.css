@@ -753,7 +753,12 @@ section,
 # Accueil
 --------------------------------------------------------------*/
 .cropped_logo {
-  width: 5%;
+  max-height: 50px; /* Ajustez la taille du logo si nécessaire */
+  margin-right: 10px; /* Ajoute un petit espace si besoin */
+}
+
+.search-bar {
+  text-align: right; /* Aligne la barre de recherche à droite */
 }
 
 /*--------------------------------------------------------------

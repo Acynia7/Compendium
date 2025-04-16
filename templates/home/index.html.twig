@@ -5,41 +5,14 @@
 {% block body %}
 <text> 
     <div class="row">
-        <!-- Colonne HELP -->
+        <!-- Colonne catégories -->
         <div class="col-md-2 bg-light p-3 border rounded help-column">
-            <h3>HELP</h3>
+            {{ include('menu/cat.html.twig') }}
         </div>
 
         <!-- Colonne principale -->
         <div class="col-md-10">
-            <!-- Section Compendium -->
-            <div class="bg-light p-3 border rounded mb-4">
-                <img src="{{ asset('Append-New-1.0.0/assets/img/logo_crop.png') }}" class="cropped_logo" alt="Compendium">
-                <p>Use the search bar to find specific celestial bodies or browse through the list below.</p>
-                <p>Click on a celestial body to view more details.</p>
-                <p>Use the filter options to narrow down your search based on type or other criteria.</p>
-            </div>
-
-            <!-- Section des cartes -->
-            <div class="row">
-                {% for celestialBody in celestialBodies %}
-                    <div class="col-md-2 mb-4">
-                        <div class="card">
-                            {% if celestialBody.imageUrl %}
-                                <img src="{{ asset('uploads/photos/' ~ celestialBody.imageUrl) }}" class="card-img-top" alt="{{ celestialBody.name }}">
-                            {% endif %}
-                            <div class="card-body">
-                                <a href="{{ path('app_show', {'celestialBodies': celestialBody.id}) }}" class="card-title"> 
-                                    <h5>{{ celestialBody.name }}</h5> 
-                                </a>
-                                <p class="card-text">
-                                    Type : {{ celestialBody.type }}<br>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
-            </div>
+            {{ include('menu/cards.html.twig') }}
         </div>
     </div>
 </text>

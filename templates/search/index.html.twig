@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search result{% endblock %}
+
+{% block body %}
+
+{% if app.request.method == 'POST' %}
+<div>
+    {% if celestialBodies | length == 0 %}
+        <h4>Aucun résultat pour votre recherche. Peut-être pourriez-vous rajouter le corps céleste que vous cherchez?</h4>
+        <a href="{{ path('app_celestial') }}" class="btn btn-primary">Je participe !</a>
+       {% else %}
+            <h3 class="mt-3">Vos résultats de recherche :</h3>
+           {% for celestialBody in celestialBodies %}
+               <div class="mt-3 p-3 bg-light border rounded">
+                    <a href="{{ path('app_show', {'celestialBodies': celestialBody.id}) }}" class="card-title"> 
+                        <h5>{{ celestialBody.name }}</h5> 
+                    </a>
+                    <p class="card-text">
+                        Type : {{ celestialBody.type }}<br>
+                    </p>
+               </div>
+          {% endfor %}
+      {% endif %}
+ </div>
+{% endif %}
+
+{% endblock %}
