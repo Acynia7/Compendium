@@ -4,22 +4,26 @@
 
 {% block body %}
 
-<h3>Création de corps céleste</h3>
-{% if app.user %}
-    <p>Bienvenue dans votre interface d'ajout de corps céleste!</p>
-{% else %}
-    <p>You must be logged in to access this page.</p>
-    <a class="btn btn-light btn-light" href="{{path("app_login")}}">Login</a>
-{% endif %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="p-4 border rounded shadow-lg bg-light" style="width: 100%; max-width: 600px;">
+        <h3 class="text-center mb-4">Création de corps céleste</h3>
+        {% if app.user %}
+            {{ form_start(celestial_form) }}
+            {{ form_widget(celestial_form, {'attr': {'class': 'mb-3'}}) }}
+            {{ form_end(celestial_form) }}
+        {% else %}
+            <p class="text-center">Vous devez être connecté pour accéder à cette page.</p>
+            <div class="text-center">
+                <a class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+            </div>
+        {% endif %}
 
-{% if app.user %}
-    {{ form(celestial_form) }}
-{% endif %}
-
-{% for message in app.flashes('success') %}
-    <div class="alert alert-success">
-        <strong>Succès!</strong> {{ message }}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-3">
+                <strong>Succès!</strong> {{ message }}
+            </div>
+        {% endfor %}
     </div>
-{% endfor %}
+</div>
 
 {% endblock %}

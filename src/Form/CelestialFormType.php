@@ -20,40 +20,89 @@ class CelestialFormType extends AbstractType
     {
         $builder
             ->add('name', TextType::class, [
-                'label' => 'Nom'
+                'label' => 'Nom',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('mass', TextType::class, [
-                'label' => 'Masse (kg)'
+                'label' => 'Masse (kg)',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('radius', TextType::class, [
-                'label' => 'Diamètre (km)'
+                'label' => 'Diamètre (km)',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('distance_from_earth', TextType::class, [
-                'label' => 'Distance de la Terre (km)'
+                'label' => 'Distance de la Terre (km)',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('temperature', TextType::class, [
-                'label' => 'Température (K)'
+                'label' => 'Température (K)',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('description', TextType::class, [
-                'label' => 'Description'
+                'label' => 'Description',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('image_url', FileType::class, [
                 'label' => 'Image',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
                 'required' => false,
                 'mapped' => false,
                 'constraints' => [
                     new Image(['maxSize' => '1024k'])
-                ]
+                ],
+                'attr' => [
+                    'class' => 'form-control mb-3', // Ajoute une marge sous le champ
+                ],
             ])
             ->add('type', EntityType::class, [
                 'class' => CelestialBodyType::class,
-                'choice_label' => 'name',
+                'choice_label' => 'name', // Affiche le champ "name" de l'entité CelestialBodyType
+                'label' => 'Type',
+                'label_attr' => [
+                    'class' => 'mb-2', // Ajoute une marge sous le label
+                ],
+                'attr' => [
+                    'class' => 'form-select mb-3', // Utilisez "form-select" pour les listes déroulantes avec Bootstrap
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'Ajouter',
                 'attr' => [
-                    'class' => 'btn btn-primary'
-                ]
+                    'class' => 'form-control mb-3 btn btn-primary'
+                ],
             ])
         ;
     }
