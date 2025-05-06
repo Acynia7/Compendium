@@ -10,22 +10,27 @@ security:
                 class: App\Entity\User
                 property: email
     firewalls:
-
+        
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+        
         login:
             pattern: ^/auth
             stateless: true
-            #provider: users
+            provider: users
             json_login:
                 check_path: /auth # The name in routes.yaml is enough for mapping
                 username_path: email
                 password_path: password
                 success_handler: lexik_jwt_authentication.handler.authentication_success
                 failure_handler: lexik_jwt_authentication.handler.authentication_failure
-        
+
         api:
-            pattern: ^/api/
+            pattern: ^/api
             stateless: true
-            jwt: ~
+            provider: users
+            jwt: ~        
 
         main:
             lazy: true
@@ -38,18 +43,20 @@ security:
             logout:
                 path: app_logout
         
-        dev:
-            pattern: ^/(_(profiler|wdt)|css|images|js)/
-            security: false
-        
 
     access_control:
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/$, roles: PUBLIC_ACCESS }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/$, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI
-        - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing API documentations and Swagger UI docs
+
         - { path: ^/auth, roles: PUBLIC_ACCESS }
-        #- { path: ^/, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+        # - { path: ^/api/sessions, roles: PUBLIC_ACCESS }
+
+
+        - { path: ^/admin, roles: ROLE_ADMIN }
+
+        - { path: ^/app, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/api, roles: ROLE_USER }
         
 
 when@test:
