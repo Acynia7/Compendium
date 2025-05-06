@@ -36,7 +36,7 @@ services:
     image: phpmyadmin
     restart: always
     ports:
-      - 8081:80
+      - 8081:80 
     environment:
       PMA_HOST: mysql
       MYSQL_ROOT_PASSWORD: password
@@ -51,7 +51,7 @@ services:
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE:-projet}
       # You should definitely change the password in production
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-astropassword}
       MYSQL_USER: ${MYSQL_USER:-emilie}
     healthcheck:
