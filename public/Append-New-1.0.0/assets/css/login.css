@@ -28,11 +28,14 @@ body{
 form{
 	display: inline-block;
 	width: 558px;
-	padding: 60px 40px;
+	padding: 40px 40px;
 	border-radius: 5px;
 	z-index: 9;
 	text-align: center;
+	background-color: #8A35B9; 
+	border-radius: 40px;
 }
+
 label{
 	color: #fff;
 	font-size: 1.7em;
@@ -109,6 +112,17 @@ img{
     border-radius: .25rem;
 	color: #000;
     background-color: #f12b3b;
+}
+
+.register-bg {
+    background-color: #8A35B9; /* ou la couleur de ton choix */
+	border-radius: 40px;;
+}
+
+.text-center {
+	text-align: center;
+	padding-top:30px;
+	padding-bottom: 30px;
 }
 
 #chk:checked ~ .login{
