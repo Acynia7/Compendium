@@ -4,12 +4,14 @@
 
 {% block body %}
 
-    <h2>{{ celestialBodies.name }}</h2>
-    <p>Type: {{ celestialBodyType.name }}</p>
-    <p>Masse: {{ celestialBodies.mass }} kg</p>
-    <p>Diamètre: {{ celestialBodies.radius }} km</p>
-    <p>Distance par rapport à la Terre: {{ celestialBodies.distanceFromEarth }} km</p>
-    <p>Température: {{ celestialBodies.temperature }} K</p>
-    <p>Description: {{ celestialBodies.description }}</p>
+    <div class="text-center p-3 fs-5" style="border-radius: 15px; padding: 10px;">
+        <h2>{{ celestialBodies.name }}</h2>
+        <p>Type: {{ celestialBodyType.name }}</p>
+        <p>Masse: {{ celestialBodies.mass }} kg</p>
+        <p>Diamètre: {{ celestialBodies.radius }} km</p>
+        <p>Distance par rapport à la Terre: {{ celestialBodies.distanceFromEarth }} km</p>
+        <p>Température: {{ celestialBodies.temperature }} K</p>
+        <p>Description: {{ celestialBodies.description }}</p>
+    </div>
     
-{% endblock %} 
+{% endblock %}
