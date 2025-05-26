@@ -88,6 +88,7 @@ RUN set -eux; \
 # copy sources
 COPY --link . ./
 RUN rm -Rf frankenphp/
+RUN php bin/console assets:install public
 
 RUN set -eux; \
 	mkdir -p var/cache var/log; \
