@@ -38,7 +38,7 @@ security:
             form_login:
                 login_path: app_login
                 check_path: app_login
-                enable_csrf: true
+                enable_csrf: false
                 default_target_path: app_home # Redirige vers la route app_home après connexion réussie
             logout:
                 path: app_logout
