@@ -9,7 +9,16 @@
         <h3 class="text-center mb-4">Création de corps céleste</h3>
         {% if app.user %}
             {{ form_start(celestial_form) }}
-            {{ form_widget(celestial_form, {'attr': {'class': 'mb-3'}}) }}
+                {{ form_row(celestial_form.name, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.mass, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.radius, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.distance_from_earth, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.temperature, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.description, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.image_url, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(celestial_form.type, {'attr': {'class': 'form-select mb-3'}}) }}
+                {{ form_row(celestial_form.submit, {'attr': {'class': 'btn btn-primary mb-3'}}) }}
+                {{ form_row(celestial_form._token) }}
             {{ form_end(celestial_form) }}
         {% else %}
             <p class="text-center">Vous devez être connecté pour accéder à cette page.</p>
