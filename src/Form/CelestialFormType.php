@@ -111,6 +111,7 @@ class CelestialFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => CelestialBodies::class,
+            'csrf_protection' => false, // Désactive la protection CSRF
         ]);
     }
 }
