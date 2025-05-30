@@ -1,5 +1,3 @@
-/database.dbml
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
@@ -8,6 +6,7 @@
 /public/bundles/
 /var/
 /vendor/
+/frankenphp/Caddyfile
 ###< symfony/framework-bundle ###
 
 ###> phpunit/phpunit ###
@@ -21,14 +20,11 @@
 ###< symfony/phpunit-bridge ###
 
 ###> symfony/asset-mapper ###
-/public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
 ###> lexik/jwt-authentication-bundle ###
 /config/jwt/*.pem
 ###< lexik/jwt-authentication-bundle ###
-
-/frankenphp/Caddyfile
 
 /public/uploads/photos/
