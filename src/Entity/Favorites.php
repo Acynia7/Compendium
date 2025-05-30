@@ -2,10 +2,17 @@
 
 namespace App\Entity;
 
+use App\Entity\CelestialBodies;
+use App\Entity\User;
 use App\Repository\FavoritesRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+
 
 #[ORM\Entity(repositoryClass: FavoritesRepository::class)]
+#[ApiResource]
 class Favorites
 {
     #[ORM\Id]
