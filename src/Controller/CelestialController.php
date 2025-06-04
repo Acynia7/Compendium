@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class CelestialController extends AbstractController
+final class CelestialController extends AbstractController 
 {
     #[Route('/celestial', name: 'app_celestial')]
     public function show(Request $request, CelestialBodiesRepository $celestialBodiesRepository, #[Autowire('%photo_dir%')] string $photoDir,): Response

@@ -4,8 +4,10 @@ namespace App\Entity;
 
 use App\Repository\RelatedRessourcesRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
 
 #[ORM\Entity(repositoryClass: RelatedRessourcesRepository::class)]
+#[ApiResource]
 class RelatedRessources
 {
     #[ORM\Id]
@@ -19,11 +21,25 @@ class RelatedRessources
     #[ORM\Column(length: 255)]
     private ?string $url = null;
 
-    #[ORM\Column]
-    private ?\DateTimeImmutable $createdAt = null;
+    #[ORM\Column(type: 'datetime_immutable')]
+    private \DateTimeImmutable $createdAt;
 
     #[ORM\ManyToOne(inversedBy: 'relatedRessources')]
     private ?CelestialBodies $celestial_body_id = null;
+
+    #[ORM\Column(length: 255, options: ['default' => 'submitted'])]
+    private ?string $state = 'submitted';
+
+    #[ORM\ManyToOne(inversedBy: 'relatedRessources')]
+    private ?RelatedRessourcesType $type = null;
+
+    #[ORM\ManyToOne(inversedBy: 'relatedRessources')]
+    private ?User $user = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new \DateTimeImmutable("now");
+    }
 
     public function getId(): ?int
     {
@@ -74,6 +90,42 @@ class RelatedRessources
     public function setCelestialBodyId(?CelestialBodies $celestial_body_id): static
     {
         $this->celestial_body_id = $celestial_body_id;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): static
+    {
+        $this->state = $state;
+
+        return $this;
+    }
+
+    public function getType(): ?RelatedRessourcesType
+    {
+        return $this->type;
+    }
+
+    public function setType(?RelatedRessourcesType $type): static
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
 
         return $this;
     }

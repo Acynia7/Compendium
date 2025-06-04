@@ -59,12 +59,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(targetEntity: Favorites::class, mappedBy: 'user')]
     private Collection $favorites;
 
+    /**
+     * @var Collection<int, RelatedRessources>
+     */
+    #[ORM\OneToMany(targetEntity: RelatedRessources::class, mappedBy: 'user')]
+    private Collection $relatedRessources;
+
     public function __construct()
     {
         $this->celestial = new ArrayCollection();
         $this->search_history = new ArrayCollection();
         $this->favorites = new ArrayCollection();
         $this->createdAt = new \DateTimeImmutable("now");
+        $this->relatedRessources = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -250,6 +257,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
             // set the owning side to null (unless already changed)
             if ($favorite->getUser() === $this) {
                 $favorite->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, RelatedRessources>
+     */
+    public function getRelatedRessources(): Collection
+    {
+        return $this->relatedRessources;
+    }
+
+    public function addRelatedRessource(RelatedRessources $relatedRessource): static
+    {
+        if (!$this->relatedRessources->contains($relatedRessource)) {
+            $this->relatedRessources->add($relatedRessource);
+            $relatedRessource->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeRelatedRessource(RelatedRessources $relatedRessource): static
+    {
+        if ($this->relatedRessources->removeElement($relatedRessource)) {
+            // set the owning side to null (unless already changed)
+            if ($relatedRessource->getUser() === $this) {
+                $relatedRessource->setUser(null);
             }
         }
 

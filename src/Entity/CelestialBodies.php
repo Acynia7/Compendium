@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Metadata\ApiResource;
 
-#[ORM\Entity(repositoryClass: CelestialBodiesRepository::class)]
+#[ORM\Entity(repositoryClass: CelestialBodiesRepository::class)] 
 #[ApiResource]
 class CelestialBodies
 {

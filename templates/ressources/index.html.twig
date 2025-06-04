@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ressources{% endblock %}
+
+{% block body %}
+<div class="d-flex justify-content-center align-items-center">
+    <div class="p-4 border rounded shadow-lg bg-light" style="width: 100%; max-width: 600px;">
+        <h3 class="text-center mb-4">Ajout d'une ressource externe</h3>
+        {% if app.user %}
+            {{ form_start(ressource_form) }}
+                {{ form_row(ressource_form.title, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(ressource_form.url, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(ressource_form.type, {'attr': {'class': 'form-control mb-3'}}) }}
+                {{ form_row(ressource_form.submit, {'attr': {'class': 'form-control mb-3'}}) }}
+            {{ form_end(ressource_form) }}
+        {% else %}
+            <p class="text-center">Vous devez être connecté pour ajouter une ressource.</p>
+            <div class="text-center">
+                <a class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+            </div>
+        {% endif %}
+
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-3">
+                <strong>Succès!</strong> {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

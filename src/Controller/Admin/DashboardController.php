@@ -35,6 +35,8 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
         yield MenuItem::linkToCrud('Celestial Bodies', 'fas fa-globe', CelestialBodies::class);
         yield MenuItem::linkToCrud('Celestial Body Types', 'fas fa-globe', CelestialBodyType::class);
+        yield MenuItem::linkToCrud('Related Ressources', 'fas fa-link', 'App\Entity\RelatedRessources');
+        yield MenuItem::linkToCrud('Related Ressources Type', 'fas fa-link', 'App\Entity\RelatedRessourcesType');
         yield MenuItem::linkToCrud('Users', 'fa fa-user', User::class);
     }
 }

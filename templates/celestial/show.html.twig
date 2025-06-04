@@ -13,5 +13,9 @@
         <p>Température: {{ celestialBodies.temperature }} K</p>
         <p>Description: {{ celestialBodies.description }}</p>
     </div>
-    
+
+    <div class="text-center p-3 fs-5" style="border-radius: 15px; padding: 10px;">
+        <a href="{{ path('app_ressources', {'id': celestialBodies.id}) }}">Ajouter une ressource externe</a>
+    </div>
+
 {% endblock %}

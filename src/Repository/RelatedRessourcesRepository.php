@@ -16,6 +16,15 @@ class RelatedRessourcesRepository extends ServiceEntityRepository
         parent::__construct($registry, RelatedRessources::class);
     }
 
+    public function add(RelatedRessources $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     //    /**
     //     * @return RelatedRessources[] Returns an array of RelatedRessources objects
     //     */
